@@ -825,7 +825,7 @@ public interface RecommendationRepository extends JpaRepository<Recommendation, 
 					e.printStackTrace();
 					// Handle or log the parsing exception
 				}
-			} else if (searchDto.getFromDate() == null) {
+			} else if (searchDto.getFromDate() != null) {
 				try {
 					Date fromDate = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").parse(searchDto.getFromDate());
 					predicates.add(criteriaBuilder.greaterThanOrEqualTo(root.get("createdAt"), fromDate));
@@ -833,7 +833,7 @@ public interface RecommendationRepository extends JpaRepository<Recommendation, 
 					e.printStackTrace();
 					// Handle or log the parsing exception
 				}
-			} else if (searchDto.getToDate() == null) {
+			} else if (searchDto.getToDate() != null) {
 				try {
 					Date toDate = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").parse(searchDto.getToDate());
 					predicates.add(criteriaBuilder.lessThanOrEqualTo(root.get("createdAt"), toDate));
